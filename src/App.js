@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 
-function App() {
+export function App() {
+  const [counter, setCounter] = useState(0);
+
+  const onIncClick = useCallback(() => {
+    setCounter(counter + 1)
+  }, [counter])
+
+  const onDecClick = useCallback(() => {
+    setCounter(counter - 1)
+  }, [counter])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button className="button" onClick={onDecClick}>Decrease</button>
+      <span className="counter">{counter}</span>
+      <button className="button" onClick={onIncClick}>Increase</button>
     </div>
   );
 }
-
-export default App;
